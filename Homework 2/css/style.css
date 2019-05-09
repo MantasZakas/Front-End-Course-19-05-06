@@ -1,0 +1,22 @@
+body {
+    background-image: url("../images/denim.jpg");
+    background-repeat: repeat-x;
+}
+table, th, td {
+    margin: auto;
+    color: grey;
+    font-size: 20px;
+    border-collapse: collapse;
+    border-style: solid;
+    border-color: darkgrey;
+    border-width: 0px 1px 3px 0px;
+    padding: 15px;
+}
+th {
+    background: #00ff0050;
+    color: white;
+}
+td.marked {
+    background: white;
+    color: blue;
+}
