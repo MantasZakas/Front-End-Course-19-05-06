@@ -1,0 +1,10 @@
+table, th, td {
+    border: solid 3px;
+    border-collapse: collapse;
+}
+td {
+    text-align: justify;
+}
+img {
+    height: 100px;
+}
