@@ -1,0 +1,14 @@
+table {
+    border-collapse: collapse;
+    width: 66%;
+}
+th, td {
+    border: solid 3px;
+    width: 20%;
+}
+td {
+    text-align: justify;
+}
+img {
+    height: 100px;
+}
