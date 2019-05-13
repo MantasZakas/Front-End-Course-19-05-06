@@ -1,0 +1,26 @@
+.black {
+    width: 700px;
+    margin: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    overflow: auto;
+}
+.outer {
+    width: 700px;
+    margin: auto;
+    border-collapse: collapse;
+}
+.inner {
+    border: solid black 1px;
+    margin: 0 -1px 0 0;
+    padding: 10px 50px;
+    vertical-align: top;
+}
+.center {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+}

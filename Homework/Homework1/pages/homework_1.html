@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Homework 1</title>
     <style>
+        body {
+            margin: 15px;
+            /*automatic margin in chrome is 8px*/
+        }
         .center {
             background-color: green;
             border-style: solid;
@@ -14,22 +18,17 @@
             text-align: center;
             padding: 100px 0;
             width: 250px;
-        }
-        .outer {
-            border-style: solid;
-            border-width: 15px;
-            border-color: blue;
-            width: 280px;
+            outline-style: solid;
+            outline-width: 15px;
+            outline-color: blue;
             margin: auto;
         }
     </style>
 </head>
 <body>
 
-    <div class="outer">
-        <div class="center">
-            <a>Hello world!</a>
-        </div>
+    <div class="center">
+        <a>Hello world!</a>
     </div>
 
 </body>

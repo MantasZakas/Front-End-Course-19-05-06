@@ -1,15 +1,16 @@
 body {
+    margin: 0;
     background-image: url("../images/denim.jpg");
     background-repeat: repeat-x;
 }
 table, th, td {
-    margin: auto;
+    margin: 0 auto;
     color: grey;
     font-size: 20px;
     border-collapse: collapse;
     border-style: solid;
     border-color: darkgrey;
-    border-width: 0px 1px 3px 0px;
+    border-width: 0 1px 3px 0;
     padding: 15px;
 }
 th {
