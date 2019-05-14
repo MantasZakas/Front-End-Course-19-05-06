@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            list-style-type: none;
+        }
+        ul li { /*tik li elementams esantiems ul elemente*/
+            float: left;
+            width: 33.3%;
+            transition: 2s;
+        }
+        ul li a {
+            color: yellow;
+            text-decoration: none;
+            transition: 4s;
+        }
+        ul li:hover {
+            background: green;
+        }
+        ul li:hover a{
+            color: white;
+        }
+    </style>
+</head>
+<body style="margin: 0">
+<div style="height: 5000px"></div>
+<div style="position: fixed; bottom: 0; background: red; width: 100%">
+    <ul>
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">About us</a>
+        </li>
+        <li>
+            <a href="#">Contact us</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

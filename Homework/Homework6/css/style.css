@@ -1,0 +1,13 @@
+table {
+    width: 800px;
+    border-collapse: collapse;
+}
+td {
+    border: solid 1px;
+}
+.short {
+    height: 50px;
+}
+.tall {
+    height: 200px;
+}
