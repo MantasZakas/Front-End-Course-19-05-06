@@ -1,0 +1,113 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    background: #ffdddd;
+    font-family: "raleway", sans-serif;
+    -webkit-filter: grayscale(30%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(30%);
+}
+button {
+    display: block;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+button:hover {
+    background: grey;
+}
+/*MENU*/
+ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style-type: none;
+}
+ul li {
+    float: left;
+    width: 25%;
+}
+ul li a {
+    text-decoration: none;
+}
+ul li:hover {
+    background: grey;
+}
+/*MENU END*/
+.italic {
+    line-height: 200%;
+    font-style: italic;
+}
+.picture_big {
+    background: grey center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+}
+.picture_small {
+    width: 100%;
+    border-radius: 4px;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.centered_rsvp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffcccc;
+    width: 100%;
+    min-height: 300px;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: black;
+    height: 100px;
+}
+.heading_big {
+    font-family: "raleway", sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 64px;
+    text-align: center;
+}
+.heading_small {
+    font-family: "raleway", sans-serif;
+    letter-spacing: 3px;
+    font-size: 30px;
+    text-align: center;
+}
+.heading_rsvvp {
+    font-size: 20px;
+    text-align: center;
+}
+.set_width {
+    width: 900px;
+    margin:auto;
+}
+.flex_container {
+    display: flex;
+    flex-direction: row;
+}
+.flex_box {
+    flex-grow: 1;
+    text-align: center;
+}
+.menu {
+    position: fixed;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    bottom: 0;
+    background: white;
+    width: 100%;
+}
