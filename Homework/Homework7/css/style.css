@@ -3,9 +3,16 @@ html, body {
     width: 100%;
     background: #ffdddd;
     font-family: "raleway", sans-serif;
-    -webkit-filter: grayscale(30%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(30%);
 }
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: black;
+    height: 100px;
+}
+/*BUTTON*/
 button {
     display: block;
     margin: auto;
@@ -18,8 +25,16 @@ button {
     font-size: 20px;
 }
 button:hover {
-    background: grey;
+    background: darkgrey;
+    color: black;
 }
+.button_black {
+    background-color: black;
+}
+.button_red {
+    background-color: red;
+}
+/*BUTTON END*/
 /*MENU*/
 ul {
     margin: 0;
@@ -30,12 +45,29 @@ ul {
 ul li {
     float: left;
     width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
 }
-ul li a {
+a {
+    color: black;
     text-decoration: none;
 }
 ul li:hover {
-    background: grey;
+    background: lightgray;
+}
+.menu {
+    position: fixed;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 5px 10px;
+    bottom: 0;
+    background: white;
+    width: 100%;
+    opacity: 0.75;
+}
+.rsvp:hover{
+    color: white;
+    background: black;
 }
 /*MENU END*/
 .italic {
@@ -50,7 +82,7 @@ ul li:hover {
 }
 .picture_small {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 .centered {
     display: flex;
@@ -65,14 +97,6 @@ ul li:hover {
     background: #ffcccc;
     width: 100%;
     min-height: 300px;
-}
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background: black;
-    height: 100px;
 }
 .heading_big {
     font-family: "raleway", sans-serif;
@@ -103,11 +127,13 @@ ul li:hover {
     flex-grow: 1;
     text-align: center;
 }
-.menu {
-    position: fixed;
-    box-sizing: border-box;
-    padding: 5px 10px;
-    bottom: 0;
+.link {
+    color: white;
+}
+.link:hover {
+    color: lightgreen;
+}
+.bottom_bar {
+    height: 50px;
     background: white;
-    width: 100%;
 }

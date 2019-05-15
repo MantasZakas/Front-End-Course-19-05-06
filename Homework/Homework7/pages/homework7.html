@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<header class="centered picture_big" style="background-image: url(../images/wedding_couple.jpg)">
+<header id="home" class="centered picture_big" style="background-image: url(../images/wedding_couple.jpg)">
     <div>
         <h1 class="heading_big">Jane & John</h1>
         <p class="heading_small">Are getting married</p>
@@ -17,7 +17,7 @@
 </header>
 <!--Jane & John section BEGIN-->
 <br><br>
-<h2 class="heading_small" style="color:grey">Jane & John</h2>
+<h2 id="jj" class="heading_small" style="color:grey">Jane & John</h2>
 <br>
 <div class="set_width">
     <img class="picture_small" src="../images/wedding_couple2.jpg" alt="Couple">
@@ -29,7 +29,7 @@
         et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </p>
     <br><br>
-    <button style="background: black">Wedding details</button>
+    <a href="#wedding"><button class="button_black">Wedding details</button></a>
     <br><br>
 </div>
 <!--Jane & John section END-->
@@ -41,7 +41,7 @@
 </div>
 <!--The wedding section BEGIN-->
 <br><br>
-<h2 class="heading_small" style="color:grey">THE WEDDING</h2>
+<h2 id="wedding" class="heading_small" style="color:grey">THE WEDDING</h2>
 <br><br>
 <div class="set_width">
     <img class="picture_small" src="../images/wedding_location.jpg" alt="Couple">
@@ -63,29 +63,31 @@
 <!--The wedding section END-->
 <div class="centered_rsvp">
     <div>
-        <h2 class="heading_small">HOPE YOU CAN MAKE IT!</h2>
+        <h2 id="rsvp" class="heading_small">HOPE YOU CAN MAKE IT!</h2>
         <p class="heading_rsvvp">Kindly Respond By January, 2017</p>
-        <button style="background: red">RSVP</button>
+        <button class="button_red">RSVP</button>
     </div>
 </div>
-<footer class="footer">
-    <p>Powered by w3 css</p>
+<footer>
+    <p>Powered by&nbsp</p>
+    <a href="https://www.w3schools.com/w3css/default.asp" class="link">w3 css</a>
 </footer>
+<div class="bottom_bar"></div>
 <!--MENU BEGIN-->
 <div class="menu">
     <ul>
-        <li>
-            <a href="#">Home</a>
-        </li>
-        <li>
-            <a href="#">Jane & John</a>
-        </li>
-        <li>
-            <a href="#">Wedding</a>
-        </li>
-        <li>
-            <a href="#">RSVP</a>
-        </li>
+        <a href="#home"><li>
+            Home
+        </li></a>
+        <a href="#jj"><li>
+            Jane & John
+        </li></a>
+        <a href="#wedding"><li>
+            Wedding
+        </li></a>
+        <a href="#rsvp"><li class="rsvp">
+            RSVP
+        </li></a>
     </ul>
 </div>
 <!--MENU END-->
