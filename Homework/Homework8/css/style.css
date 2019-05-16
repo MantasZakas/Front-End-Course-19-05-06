@@ -178,6 +178,73 @@ header a {
     margin-top: 10px;
     height: 440px;
     min-width: 550px;
-    background: black cover no-repeat;
-    background-image: url("../images/550_440px.jpg");
+    background: black url("../images/sample.jpg") no-repeat;
+}
+#section_white {
+    margin: 40px 20px;
+}
+#section_white div {
+    display: flex;
+    overflow-y: auto;
+}
+#section_white_picture {
+    background: black url("../images/sample.jpg") no-repeat;
+    width: 470px;
+    height: 460px;
+}
+#section_white_menu {
+    height: 480px;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 20px;
+}
+#section_white_menu div {
+    width: 225px;
+    height: 230px;
+    margin-left: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+#section_white_menu div div {
+    background: black no-repeat;
+    height: 80px;
+    width: 85px;
+    margin: 0 0 10px 0;
+}
+#section_white_menu a {
+    text-decoration: none;
+    font-size: 12px;
+}
+#section_white_menu p {
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+}
+#section_white_banner {
+    height: 120px;
+    box-sizing: border-box;
+    background: #e0e0e0;
+    border-left: #0099ff solid 10px;
+    padding: 30px 40px;
+}
+#section_white_banner div{
+    flex-direction: column;
+    flex-grow: 1;
+}
+#section_white_banner h2 {
+    margin: 0;
+    font-size: 25px;
+}
+#section_white_banner p {
+    margin: 10px 0 0 0;
+    font-size: 15px;
+}
+#section_white_banner button {
+    border: none;
+    border-radius: 5px;
+    background: #0099ff;
+    padding: 15px 12px;
+    font-size: 20px;
+    color: #e0e0e0;
 }
