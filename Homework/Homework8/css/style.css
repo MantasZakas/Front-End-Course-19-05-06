@@ -325,6 +325,7 @@ footer div {
     border-radius: 5px;
     background: #232323;
     padding: 0 5px;
+    color: white;
 }
 #section_black textarea {
     resize: none;
