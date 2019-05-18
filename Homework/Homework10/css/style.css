@@ -1,0 +1,43 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+th, td {
+    margin: 0;
+    padding: 2px;
+}
+th {
+    width: 200px;
+    text-align: right;
+}
+input {
+    width: 200px;
+}
+#main {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#main form {
+    background: lightgray;
+    border-radius: 5px;
+    width: 600px;
+    min-height: 20px;
+    padding: 10px;
+    margin: 5px;
+}
+#number {
+    width: 35px;
+}
+#color {
+    width: 50px;
+}
+.shorter {
+    width: 130px;
+}
