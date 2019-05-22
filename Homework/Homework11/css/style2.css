@@ -149,8 +149,8 @@ footer {
   #section_black > div {
     max-width: 900px;
     margin: auto; }
-  #section_black button:focus {
-    background: #f44336; }
+  #section_black button.active {
+    background-color: #f44336; }
 
 #menu {
   background: white;
@@ -172,7 +172,7 @@ footer {
   #menu h3 span.hot {
     Float: none;
     background: #f44336; }
-  #menu h3 span.new {
+  #menu h3 span.info {
     Float: none;
     background: #9e9e9e; }
 
@@ -204,6 +204,11 @@ footer {
   #section_grey > div {
     max-width: 900px;
     margin: auto; }
+
+#mapid {
+  width: 100%;
+  height: 100vh;
+  z-index: 0; }
 
 @media screen and (min-width: 600px) {
   header {

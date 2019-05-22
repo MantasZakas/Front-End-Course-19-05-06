@@ -164,8 +164,8 @@ footer {
     max-width: 900px;
     margin: auto;
   }
-  button:focus {
-    background: #f44336;
+  button.active {
+    background-color: #f44336;
   }
 }
 #menu {
@@ -194,7 +194,7 @@ footer {
     Float: none;
     background: #f44336;
   }
-  h3 span.new {
+  h3 span.info {
     Float: none;
     background: #9e9e9e;
   }
@@ -235,6 +235,11 @@ footer {
     max-width: 900px;
     margin: auto;
   }
+}
+#mapid {
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
 }
 
 @media screen and (min-width: 600px) {
