@@ -1,0 +1,23 @@
+header {
+  min-height: 110px;
+  background: #333333;
+  color: #c0bab6;
+}
+ul {
+  background: #232323;
+}
+li a {
+  color: inherit;
+}
+.fixed-width {
+  max-width: 960px !important;
+}
+.card-box {
+  p {
+    font-size: 12px;
+  }
+}
+.image-tiny {
+  height: 32px;
+  width: 32px;
+}

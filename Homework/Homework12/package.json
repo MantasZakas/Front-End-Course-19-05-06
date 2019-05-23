@@ -1,6 +1,7 @@
 {
-  "name": "homework11",
+  "name": "homework12",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +11,5 @@
   "license": "ISC",
   "dependencies": {
     "node-sass": "^4.12.0"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }
