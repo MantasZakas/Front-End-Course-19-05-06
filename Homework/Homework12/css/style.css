@@ -12,17 +12,17 @@ nav ul {
   background: #232323; }
 
 li a {
-  color: inherit !important; }
+  color: inherit; }
 
 a {
   font-size: 12px;
-  color: #ff9900 !important; }
+  color: #ff9900; }
 
 p {
   font-size: 12px; }
 
 .fixed-width {
-  max-width: 960px !important;
+  max-width: 960px;
   color: #979797; }
 
 .image-tiny {
@@ -36,7 +36,7 @@ p {
   max-width: 290px; }
 
 .img-thumbnail {
-  border-radius: 0 !important; }
+  border-radius: 0; }
 
 .categories li {
   color: black;
