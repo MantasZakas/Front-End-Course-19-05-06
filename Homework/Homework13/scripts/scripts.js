@@ -1,4 +1,4 @@
-function check (x) {
+function check (x) {  //check for negative numbers
     if (x <0) {
         return 0;
     } else {
@@ -23,17 +23,25 @@ function diagonal (h, w) {
     }
 }
 function draw (h, w) {
-    var maxLength = 500; //scale the dimensions
-    if (h > w) {
-        var widthScaled = w * maxLength / h;
-        var heightScaled = maxLength;
-    } else {heightScaled = h * maxLength / w;
-        widthScaled = maxLength;
+    var maxLength = 400; //scale the dimensions
+    if (h === 0 || w === 0) {
+        document.getElementById("rectangle").style.borderRadius = ("50%"); //make a circle
+        widthScaled = maxLength / 2;
+        heightScaled = maxLength / 2;
+    } else {
+        if (h > w) {
+            var widthScaled = w * maxLength / h;
+            var heightScaled = maxLength;
+        } else {
+            heightScaled = h * maxLength / w;
+            widthScaled = maxLength;
+        }
     }
     document.getElementById("rectangle").style.height = (heightScaled + "px"); //draw the rectangle
     document.getElementById("rectangle").style.width = (widthScaled + "px");
 }
 function calculate (){
+    document.getElementById("rectangle").style.borderRadius = ("0"); //reset border radius in case of previous invalid values
     var h = parseFloat(document.getElementById("height").value); //get value as number
     var w = parseFloat(document.getElementById("width").value);
     var dimensions = [h, w];
