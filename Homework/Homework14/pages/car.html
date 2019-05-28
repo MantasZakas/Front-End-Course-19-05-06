@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var car = {
+            date:"2017-07-06 19:59:45",
+            license_number:"LRS123",
+            distance: 5000,
+            time: 118
+        };
+        function doTheThing (car){
+            car.speed = Math.round(car.distance / car.time * 3.6);
+            var tag;
+            for (tag in car) {
+                console.log(tag);
+                document.getElementById(tag).innerHTML = car[tag];
+            }
+        }
+    </script>
+</head>
+<body onload="doTheThing(car)">
+<div class="container-fluid">
+    <div class="container my-4">
+        <table class="table-striped">
+            <tr>
+                <th class="pr-1">Date</th>
+                <td id="date"></td>
+            </tr>
+            <tr>
+                <th class="pr-1">License number</th>
+                <td id="license_number"></td>
+            </tr>
+            <tr>
+                <th class="pr-1">Distance, m</th>
+                <td id="distance"></td>
+            </tr>
+            <tr>
+                <th class="pr-1">Time, s</th>
+                <td id="time"></td>
+            </tr>
+            <tr>
+                <th class="pr-1">Speed, km/h</th>
+                <td id="speed"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
