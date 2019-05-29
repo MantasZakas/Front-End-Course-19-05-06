@@ -5,7 +5,7 @@ function reset() {
     document.getElementById("area").innerHTML = "";
 }
 function validate(sides) {
-    if (sides[2] - sides[1] - sides[0] === 0) { //triangle with area of 0
+    if (sides[2] - sides[1] - sides[0] <= 0) { //triangle with area of 0 or less
         return false;
     }
     function positive(value) {
@@ -47,5 +47,4 @@ function calculate() {
     }
     checkSides(sides);
     area(sides);
-
 }

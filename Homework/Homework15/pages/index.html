@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../js/scripts.js"></script>
+</head>
+<body>
+
+<div class="container-fluid text-center item-center">
+    <h1>Chess</h1>
+    <div id="board" class="mx-auto bg-secondary">
+        <table>
+            <tr>
+                <td id="start1" class="square" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div id="queen1" draggable="true" ondragstart="drag(event)" class="piece black"><i class="fas fa-chess-queen"></i></div>
+                </td>
+                <td id="start2" class="square" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div id="queen2" draggable="true" ondragstart="drag(event)" class="piece white"><i class="fas fa-chess-queen"></i></div>
+                </td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+            <tr>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                <td class="square" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<button type="button" onclick="test()">Do not press</button>
+
+</body>
+</html>
+
+<!--<i class="fas fa-chess-pawn"></i>-->
+<!--<i class="fas fa-chess-knight"></i>-->
+<!--<i class="fas fa-chess-bishop"></i>-->
+<!--<i class="fas fa-chess-knight"></i>-->
+<!--<i class="fas fa-chess-queen"></i>-->
+<!--<i class="fas fa-chess-king"></i>-->

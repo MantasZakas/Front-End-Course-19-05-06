@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+table {
+    height: 100%;
+    width: 100%;
+}
+td /*create a checkered coloring*/
+{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+}
+tr:nth-child(even) td:nth-child(odd),
+tr:nth-child(odd) td:nth-child(even)
+{
+    background-color: #2f2f2f;
+}
+#board {
+    padding: 20px;
+    width: 520px;
+    height: 520px;
+}
+.piece {
+    background: gray;
+    border-radius: 50%;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+.white {
+    color: white;
+}
+.black {
+    color: black;
+}
