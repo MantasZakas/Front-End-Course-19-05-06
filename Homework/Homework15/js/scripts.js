@@ -111,36 +111,63 @@ function movementKing(ev, squareData) {
         [col - 1, row], [col - 1, row + 10], [col, row + 10], [col + 1, row + 10]]; //all 8 moves a knight can make
     validateAndActivateCoordinates(ev, possibleCoordinates);
 }
-function movementRook(ev, squareData) {  //TODO remake with validateAndActivateCoordinates
-    var col = squareData.col.toString();
-    var row = squareData.row.toString();
-    for (var i = 0; i < 8; i++) {  //enable full row and column for movement, where the rook is
-        document.getElementsByClassName(col)[i].setAttribute("ondrop", "drop(event)");
-        document.getElementsByClassName(col)[i].setAttribute("ondragover", "allowDrop(event)");
-        document.getElementsByClassName(row)[i].setAttribute("ondrop", "drop(event)");
-        document.getElementsByClassName(row)[i].setAttribute("ondragover", "allowDrop(event)");
+function movementRook(ev, squareData) {
+    var col = squareData.col;
+    var row = squareData.row;
+    var possibleCoordinates = [];
+    for (var i = 1 + col; i < 9; i++) {  //find all squares right of the rook
+        possibleCoordinates.push([i, row]);
+        if (document.getElementsByClassName((i + " " + row))[0].innerHTML.search("piece") + 1) { //breaks loop if finds a piece in the way
+            break;
+        }
     }
+    for (i = -1 + col; i > 0; i = i -1) {  //left
+        possibleCoordinates.push([i, row]);
+        if (document.getElementsByClassName((i + " " + row))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
+    }
+    for (i = 10 + row; i < 90; i = i + 10) {  //above
+        possibleCoordinates.push([col, i]);
+        if (document.getElementsByClassName((col + " " + i))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
+    }
+    for (i = -10 + row; i > 0; i = i - 10) {  //below
+        possibleCoordinates.push([col, i]);
+        if (document.getElementsByClassName((col + " " + i))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
+    }
+    validateAndActivateCoordinates(ev, possibleCoordinates);
 }
 function movementBishop(ev, squareData) {
     var col = squareData.col;
     var row = squareData.row;
-    for (var possibleCoordinates = []; col < 9 && row < 90; col++, row = row + 10) {
-        possibleCoordinates.push([col, row]); //construct an array with all coordinates reachable by the bishop
+    var possibleCoordinates = [];
+    for (var i = 1 + col, j = 10 + row; i < 9 && j < 90; i++, j = j + 10) {
+        possibleCoordinates.push([i, j]);
+        if (document.getElementsByClassName((i + " " + j))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
     }
-    col = squareData.col;
-    row = squareData.row;
-    for (possibleCoordinates; col > 0 && row > 0; col= col - 1, row = row - 10) {
-        possibleCoordinates.push([col, row]);
+    for (i = -1 + col, j = -10 + row; i > 0 && j > 0; i = i - 1, j = j - 10) {
+        possibleCoordinates.push([i, j]);
+        if (document.getElementsByClassName((i + " " + j))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
     }
-    col = squareData.col;
-    row = squareData.row;
-    for (possibleCoordinates; col > 0 && row < 90; col= col - 1, row = row + 10) {
-        possibleCoordinates.push([col, row]);
+    for (i = -1 + col, j = 10 + row; i > 0 && j < 90; i = i - 1, j = j + 10) {
+        possibleCoordinates.push([i, j]);
+        if (document.getElementsByClassName((i + " " + j))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
     }
-    col = squareData.col;
-    row = squareData.row;
-    for (possibleCoordinates; col < 9 && row > 0; col++, row = row - 10) {
-        possibleCoordinates.push([col, row]);
+    for (i = 1 + col, j = -10 + row; i < 9 && j > 0; i++, j = j - 10) {
+        possibleCoordinates.push([i, j]);
+        if (document.getElementsByClassName((i + " " + j))[0].innerHTML.search("piece") + 1) {
+            break;
+        }
     }
     validateAndActivateCoordinates(ev, possibleCoordinates);
 }
@@ -210,31 +237,25 @@ function test(x, y) {
 // function movementBishop(ev, squareData) {
 //     var col = squareData.col;
 //     var row = squareData.row;
-//     for (var arr = []; col < 9 && row < 90; col++, row = row + 10) {
-//         arr.push([col, row]); //construct an array with all coordinates reachable by the bishop
+//     for (var possibleCoordinates = []; col < 9 && row < 90; col++, row = row + 10) {
+//         possibleCoordinates.push([col, row]); //construct an array with all coordinates reachable by the bishop
 //     }
 //     col = squareData.col;
 //     row = squareData.row;
-//     for (arr; col > 0 && row > 0; col= col - 1, row = row - 10) {
-//         arr.push([col, row]);
+//     for (possibleCoordinates; col > 0 && row > 0; col= col - 1, row = row - 10) {
+//         possibleCoordinates.push([col, row]);
 //     }
 //     col = squareData.col;
 //     row = squareData.row;
-//     for (arr; col > 0 && row < 90; col= col - 1, row = row + 10) {
-//         arr.push([col, row]);
+//     for (possibleCoordinates; col > 0 && row < 90; col= col - 1, row = row + 10) {
+//         possibleCoordinates.push([col, row]);
 //     }
 //     col = squareData.col;
 //     row = squareData.row;
-//     for (arr; col < 9 && row > 0; col++, row = row - 10) {
-//         arr.push([col, row]);
+//     for (possibleCoordinates; col < 9 && row > 0; col++, row = row - 10) {
+//         possibleCoordinates.push([col, row]);
 //     }
-//     arr.forEach(function(coordinates) {
-//         col = coordinates[0].toString();
-//         row = 8 - (coordinates[1] / 10); //turn row class into array index
-//         row = row.toString();
-//         document.getElementsByClassName(col)[row].setAttribute("ondrop", "drop(event)");
-//         document.getElementsByClassName(col)[row].setAttribute("ondragover", "allowDrop(event)");
-//     });
+//     validateAndActivateCoordinates(ev, possibleCoordinates);
 // }
 
 //     // document.getElementsByClassName(x)[((y / 10) + 2)].style.background = ("red");  //dual class selection
