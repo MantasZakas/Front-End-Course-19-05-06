@@ -14,7 +14,7 @@
 </head>
 <body onload="prepare()">
 <!--COLUMNS ARE NUMBERED 1-8, ROWS ARE NUMBERED 10-80 AS CLASSES-->
-<!--Class order is important, eg square 5 70-->
+<!--Class order is important, eg square 5 70, eg piece black pawn-->
 <div class="container-fluid text-center item-center">
     <h1>Chess</h1>
     <div id="board" class="mx-auto bg-secondary">
@@ -45,7 +45,9 @@
                 <td class="square 1 70"></td>
                 <td class="square 2 70"></td>
                 <td class="square 3 70"></td>
-                <td class="square 4 70"></td>
+                <td class="square 4 70">
+                    <div id="pieceX" class="piece black pawn"></div>
+                </td>
                 <td class="square 5 70"></td>
                 <td class="square 6 70"></td>
                 <td class="square 7 70"></td>
@@ -95,7 +97,9 @@
                 <td class="square 1 20"></td>
                 <td class="square 2 20"></td>
                 <td class="square 3 20"></td>
-                <td class="square 4 20"></td>
+                <td class="square 4 20">
+                    <div id="pieceY" class="piece white pawn"></div>
+                </td>
                 <td class="square 5 20"></td>
                 <td class="square 6 20"></td>
                 <td class="square 7 20"></td>
@@ -115,7 +119,7 @@
     </div>
 </div>
 
-<!--<button type="button" onclick="test(2, 50)">Do not press</button>-->
+<button type="button" onclick="test(4, 40)">Do not press</button>
 
 </body>
 </html>
