@@ -1,16 +1,8 @@
-var player = "black";
+var player = "white";
 
 function prepare() {  //prepare the board and pieces
-    // unblockSquares();
     prepPieces();
     addEventListener("mousedown", identifyPiece);
-    // addEventListener("mouseup", function(){
-    //     console.log("mouse up")
-    // });
-    // addEventListener("click", function(){
-    //     console.log("click")
-    // });
-
 }
 
 function prepPieces() {
@@ -42,7 +34,6 @@ function prepPieces() {
 
 function drag(ev) {  //pick up piece
     ev.dataTransfer.setData("text", ev.target.id);
-    // blockTakenSquares();  //stop pieces from being put on taken squares
 }
 
 function allowDrop(ev) {  //drag
@@ -53,29 +44,13 @@ function drop(ev) {  //drop piece
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
-    // unblockSquares();  //reset dropping on all squares
     takePiece(ev, player);  //remove a piece if it is in the square
     blockSquares();  //block off all squares upon dropping a piece
+    //TODO fix bug, if you click on a piece it enables squares, but they are not disabled until a piece moves
 }
-
-
-
-
 
 //GENERAL MOVEMENT FUNCTIONS END
 
-// function blockTakenSquares() {
-//     for (var i = 0; i < document.getElementsByClassName("piece").lengths; i++) {
-//         document.getElementsByClassName("piece")[i].parentElement.setAttribute("ondrop", ""); //make all squares where pieces are undropable
-//         document.getElementsByClassName("piece")[i].parentElement.setAttribute("ondragover", "");
-//     }
-// }
-// function unblockSquares() {
-//     for (var i = 0; i < 64; i++) {
-//         document.getElementsByClassName("square")[i].setAttribute("ondrop", "drop(event)");
-//         document.getElementsByClassName("square")[i].setAttribute("ondragover", "allowDrop(event)");
-//     }
-// }
 function blockSquares() {
     for (var i = 0; i < 64; i++) {
         document.getElementsByClassName("square")[i].setAttribute("ondrop", "");
@@ -105,7 +80,6 @@ function identifyPiece(ev) {
         movementPawn(ev, squareData);
     }
     preventFriendlyFire(ev, squareData);
-    // unblockSquares();
 }
 
 function identifySquare(ev) {  //get quare coordinates and piece color
@@ -214,15 +188,43 @@ function movementPawn(ev, squareData) {
     var col = squareData.col;
     var row = squareData.row;
     var possibleCoordinates = [];
-    if (squareData.color === "white") {
-        possibleCoordinates = [[col, row + 10]];
-        if (row === 20) {
-            possibleCoordinates.push([col, row + 20]); //if white pawn didn't move before, let it move 2 squares
+    if (squareData.color === "white") { //white pawn
+        if (isSquareFree(col, row + 10)) { //pawns can't take pieces when moving straight
+            possibleCoordinates = [[col, row + 10]];
         }
-    } else {
-        possibleCoordinates = [[col, row - 10]];
-        if (row === 70) {
-            possibleCoordinates.push([col, row - 20]);
+        if (row === 20) { //white pawns start in this row
+            if (isSquareFree(col, row + 20)) {
+                possibleCoordinates.push([col, row + 20]); //if white pawn didn't move before, let it move 2 squares
+            }
+        }
+        if (col - 1 > 0) {  //make sure pawn does not go out of the board
+            if (!isSquareFree(col - 1, row + 10)) { //pawns can take pieces diagonally
+                possibleCoordinates.push([col - 1, row + 10]);
+            }
+        }
+        if (col + 1 < 9) {
+            if (!isSquareFree(col + 1, row + 10)) {
+                possibleCoordinates.push([col + 1, row + 10]);
+            }
+        }
+    } else { //black pawn
+        if (isSquareFree(col, row - 10)) {
+            possibleCoordinates = [[col, row - 10]];
+        }
+        if (row === 70) { //black pawns start in this row
+            if (isSquareFree(col, row - 20)) {
+                possibleCoordinates.push([col, row - 20]);
+            }
+        }
+        if (col - 1 > 0) {  //make sure pawn does not go out of the board
+            if (!isSquareFree(col - 1, row - 10)) { //pawns can take pieces diagonally
+                possibleCoordinates.push([col - 1, row - 10]);
+            }
+        }
+        if (col + 1 < 9) {
+            if (!isSquareFree(col + 1, row - 10)) {
+                possibleCoordinates.push([col + 1, row - 10]);
+            }
         }
     }
     validateAndActivateCoordinates(ev, possibleCoordinates);
@@ -241,6 +243,16 @@ function validateAndActivateCoordinates(ev, possibleCoordinates) {
         document.getElementsByClassName((square[0] + " " + square[1]))[0].setAttribute("ondrop", "drop(event)"); //dual class selection
         document.getElementsByClassName((square[0] + " " + square[1]))[0].setAttribute("ondragover", "allowDrop(event)");
     });
+}
+
+function isSquareFree (col, row) {
+    var answer = true;
+    console.log (document.getElementsByClassName((col + " " + row))[0].firstElementChild);
+    if (document.getElementsByClassName((col + " " + row))[0].firstElementChild) {
+        answer = false;
+    }
+    console.log(answer);
+    return answer;
 }
 
 function preventFriendlyFire(ev, squareData) {
@@ -263,22 +275,24 @@ function preventFriendlyFire(ev, squareData) {
 function takePiece(ev, player) { //TODO string slice depends on characters in id
     var square = ev.target.parentElement.parentElement;
     if (square.getAttribute("class")) { //stops console errors
-        if (square.getAttribute("class").indexOf("square") + 1) { //TODO gives console errors
+        if (square.getAttribute("class").indexOf("square") + 1) {
             var squareHTML = ev.target.parentElement.parentElement.innerHTML;
             squareHTML = squareHTML.slice(squareHTML.indexOf(player) - 30, squareHTML.indexOf(player) + 96); //cut HTML text and leave only one piece div
             square.innerHTML = (squareHTML);
         }
     } else {
         square = ev.target.parentElement;
-    } if (square.getAttribute("class")) { //TODO tidy this up with a separate function
-        if (square.getAttribute("class").indexOf("square") + 1) { //TODO gives console errors
+    }
+    if (square.getAttribute("class")) { //TODO tidy this up with a separate function
+        if (square.getAttribute("class").indexOf("square") + 1) {
             squareHTML = ev.target.parentElement.innerHTML;
             squareHTML = squareHTML.slice(squareHTML.indexOf(player) - 30, squareHTML.indexOf(player) + 96);
             square.innerHTML = (squareHTML);
         }
     } else {
         square = ev.target;
-    } if (square.getAttribute("class")) {
+    }
+    if (square.getAttribute("class")) {
         if (square.getAttribute("class").indexOf("square") + 1) {
             squareHTML = ev.target.innerHTML;
             squareHTML = squareHTML.slice(squareHTML.indexOf(player) - 30, squareHTML.indexOf(player) + 96);
@@ -287,56 +301,10 @@ function takePiece(ev, player) { //TODO string slice depends on characters in id
     }
 }
 
+//PIECE MOVEMENT FUNCTIONS END
 
 
-
-
-function test(x, y) {
-    var col = x;
-    var row = y;
-    var possibleCoordinates = [[x + 2, y - 10], [x + 2, y + 10], [x - 2, y - 10], [x - 2, y + 10],
-        [x + 1, y + 20], [x - 1, y + 20], [x + 1, y - 20], [x - 1, y - 20]]; //all 8 moves a knight can make
-    console.log(possibleCoordinates.toString());
-    var coordinates = [];
-    possibleCoordinates.forEach(function (square) {
-        if (square[0] > 0 && square[0] < 9 && square[1] > 9 && square[1] < 81) { //if possible coordinates coordinate is inside the board
-            coordinates.push(square);
-        }
-    });
-    console.log(coordinates.toString());
+function test() {
+    isSquareFree(1, 80);
+    isSquareFree(8, 80);
 }
-
-// function movementBishop(ev, squareData) {
-//     var col = squareData.col;
-//     var row = squareData.row;
-//     for (var possibleCoordinates = []; col < 9 && row < 90; col++, row = row + 10) {
-//         possibleCoordinates.push([col, row]); //construct an array with all coordinates reachable by the bishop
-//     }
-//     col = squareData.col;
-//     row = squareData.row;
-//     for (possibleCoordinates; col > 0 && row > 0; col= col - 1, row = row - 10) {
-//         possibleCoordinates.push([col, row]);
-//     }
-//     col = squareData.col;
-//     row = squareData.row;
-//     for (possibleCoordinates; col > 0 && row < 90; col= col - 1, row = row + 10) {
-//         possibleCoordinates.push([col, row]);
-//     }
-//     col = squareData.col;
-//     row = squareData.row;
-//     for (possibleCoordinates; col < 9 && row > 0; col++, row = row - 10) {
-//         possibleCoordinates.push([col, row]);
-//     }
-//     validateAndActivateCoordinates(ev, possibleCoordinates);
-// }
-
-//     // document.getElementsByClassName(x)[((y / 10) + 2)].style.background = ("red");  //dual class selection
-//
-//     // document.getElementsByClassName('4 30')[0].style.background = ("red");  //dual class selection
-
-// correct solution for searching for 2 class search with variables
-// document.getElementsByClassName('4 30')[0].style.background = (class1 + " " + class2);  //dual class selection
-
-
-// addEventListener("click", function () {console.log("mouse up")});
-// addEventListener("click", function () {console.log("unclick")});
