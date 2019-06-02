@@ -1,14 +1,18 @@
 var player = "white";
+var square = "";
 
 function prepare() {  //prepare the board and pieces
     prepPieces();
     addEventListener("mousedown", identifyPiece);
+    setInterval(function () {
+        evolvePawn(player)
+    }, 50);  //TODO find a better solution to do evolvePawn
 }
 
 function prepPieces() {
-    for (var i = 0; i < document.getElementsByClassName("piece").length; i++) {  //count the number of pieces on board and make them draggable
-        document.getElementsByClassName("piece")[i].setAttribute("draggable", "true");
-        document.getElementsByClassName("piece")[i].setAttribute("ondragstart", "drag(event)");
+    for (var i = 0; i < document.getElementsByClassName(player).length; i++) {  //count the number of pieces on board and make them draggable
+        document.getElementsByClassName(player)[i].setAttribute("draggable", "true");
+        document.getElementsByClassName(player)[i].setAttribute("ondragstart", "drag(event)");
     }
     for (i = 0; i < document.getElementsByClassName("king").length; i++) {  //count the number of kings on board and add icons into them
         document.getElementsByClassName("king")[i].innerHTML = '<i class="fas fa-chess-king"></i>';
@@ -46,7 +50,7 @@ function drop(ev) {  //drop piece
     ev.target.appendChild(document.getElementById(data));
     takePiece(ev, player);  //remove a piece if it is in the square
     blockSquares();  //block off all squares upon dropping a piece
-    //TODO fix bug, if you click on a piece it enables squares, but they are not disabled until a piece moves
+    setTimeout(changeTurn, 55); //this is due to evolvePawn
 }
 
 //GENERAL MOVEMENT FUNCTIONS END
@@ -58,7 +62,7 @@ function blockSquares() {
     }
 }
 
-function identifyPiece(ev) {
+function identifyPiece(ev, square) {
     var pieceType = ev.target.getAttribute("class");
     var squareData = identifySquare(ev);  //find position of square by getting the class
     if (pieceType.search("king") + 1) {
@@ -80,6 +84,7 @@ function identifyPiece(ev) {
         movementPawn(ev, squareData);
     }
     preventFriendlyFire(ev, squareData);
+
 }
 
 function identifySquare(ev) {  //get quare coordinates and piece color
@@ -245,13 +250,11 @@ function validateAndActivateCoordinates(ev, possibleCoordinates) {
     });
 }
 
-function isSquareFree (col, row) {
+function isSquareFree(col, row) {
     var answer = true;
-    console.log (document.getElementsByClassName((col + " " + row))[0].firstElementChild);
     if (document.getElementsByClassName((col + " " + row))[0].firstElementChild) {
         answer = false;
     }
-    console.log(answer);
     return answer;
 }
 
@@ -272,10 +275,10 @@ function preventFriendlyFire(ev, squareData) {
     }
 }
 
-function takePiece(ev, player) { //TODO string slice depends on characters in id
+function takePiece(ev, player) {
     var square = ev.target.parentElement.parentElement;
     if (square.getAttribute("class")) { //stops console errors
-        if (square.getAttribute("class").indexOf("square") + 1) {
+        if (square.getAttribute("class").indexOf("square") + 1) { //3 ifs depending on where exactly the piece is dropped (icon, piece div or square
             var squareHTML = ev.target.parentElement.parentElement.innerHTML;
             squareHTML = squareHTML.slice(squareHTML.indexOf(player) - 30, squareHTML.indexOf(player) + 96); //cut HTML text and leave only one piece div
             square.innerHTML = (squareHTML);
@@ -283,7 +286,7 @@ function takePiece(ev, player) { //TODO string slice depends on characters in id
     } else {
         square = ev.target.parentElement;
     }
-    if (square.getAttribute("class")) { //TODO tidy this up with a separate function
+    if (square.getAttribute("class")) {
         if (square.getAttribute("class").indexOf("square") + 1) {
             squareHTML = ev.target.parentElement.innerHTML;
             squareHTML = squareHTML.slice(squareHTML.indexOf(player) - 30, squareHTML.indexOf(player) + 96);
@@ -299,12 +302,73 @@ function takePiece(ev, player) { //TODO string slice depends on characters in id
             square.innerHTML = (squareHTML);
         }
     }
+    gameWinner(); //check if game is over
+}
+
+function gameWinner() { //player wins if the opposing king cannot be found
+    var winner = "";
+    if (!document.getElementById("wking1")) {
+        winner = "black";
+    }
+    if (!document.getElementById("bking1")) {
+        winner = "white";
+    }
+    if (winner) {
+        document.getElementsByTagName("table")[0].classList.add("hidden"); //hide the board
+        document.getElementById("gameOver").classList.remove("hidden");
+        if (winner === "white") {
+            document.getElementById("gameOver").classList.add("white");
+            document.getElementById("gameOver").innerHTML = ("White wins");
+        }
+        if (winner === "black") {
+            document.getElementById("gameOver").classList.add("black");
+            document.getElementById("gameOver").innerHTML = ("Black wins");
+        }
+    }
+}
+
+function evolvePawn(player) {
+    var row = "80";
+    if (player === "black") {
+        row = "10";
+    }
+    var squares = document.getElementsByClassName(row);
+    for (var i = 0; i < 8; i++) {
+        if (squares[i].firstElementChild) { //if square is taken
+            if (squares[i].innerHTML.indexOf("pawn") + 1) { //if a pawn is in the square
+                squares[i].firstElementChild.innerHTML = "";
+                squares[i].firstElementChild.classList.remove("pawn");
+                for (var j = 0; j < 4; j++) { //color selection buttons depending on the player
+                    document.getElementsByTagName("button")[j].classList.add(player);
+                }
+                document.getElementsByTagName("table")[0].classList.add("hidden");//hide the board
+                document.getElementById("pieceSelector").classList.remove("hidden");//show the piece selector
+                square = squares[i] //only one pawn can be found, so the rest of the loop does not matter
+            }
+        }
+    }
+}
+
+function evolutionSelection(pieceType, square) { //changes pawn type and closes selection view, used in HTML
+    square.firstElementChild.innerHTML = ('<i class=\"fas fa-chess-' + pieceType + '"></i>');
+    document.getElementById("pieceSelector").classList.add("hidden");
+    document.getElementsByTagName("table")[0].classList.remove("hidden");
+}
+
+function changeTurn() {
+    for (var i = 0; i < document.getElementsByClassName(player).length; i++) {  //count the number of pieces on board and make them draggable
+        document.getElementsByClassName(player)[i].setAttribute("draggable", null);
+        document.getElementsByClassName(player)[i].setAttribute("ondragstart", null);
+    }
+    document.getElementsByTagName("h1")[0].style.color = player;
+    if (player === "white") {
+        player = "black"
+    } else player = "white";
+    for (i = 0; i < document.getElementsByClassName(player).length; i++) {  //count the number of pieces on board and make them draggable
+        document.getElementsByClassName(player)[i].setAttribute("draggable", "true");
+        document.getElementsByClassName(player)[i].setAttribute("ondragstart", "drag(event)");
+    }
+    document.getElementById("main").style.background = player;
 }
 
 //PIECE MOVEMENT FUNCTIONS END
-
-
-function test() {
-    isSquareFree(1, 80);
-    isSquareFree(8, 80);
-}

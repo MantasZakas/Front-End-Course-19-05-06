@@ -16,6 +16,9 @@ tr:nth-child(odd) td:nth-child(even)
 {
     background-color: #2f2f2f;
 }
+#main {
+    height: 100vh;
+}
 #board {
     padding: 20px;
     width: 520px;
@@ -24,8 +27,8 @@ tr:nth-child(odd) td:nth-child(even)
 .piece {
     background: gray;
     border-radius: 50%;
-    height: 80%;
-    width: 80%;
+    height: 45px;
+    width: 45px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -38,4 +41,7 @@ tr:nth-child(odd) td:nth-child(even)
 }
 .black {
     color: black;
+}
+.hidden {
+    display: none;
 }

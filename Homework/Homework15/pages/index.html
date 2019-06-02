@@ -15,55 +15,74 @@
 <body onload="prepare()">
 <!--COLUMNS ARE NUMBERED 1-8, ROWS ARE NUMBERED 10-80 AS CLASSES-->
 <!--Class order is important, eg square 5 70, eg piece black pawn-->
-<div class="container-fluid text-center item-center">
+<!--Piece id is w or b, 4 letters for type and a number, eg wquee1-->
+<div id="main" class="container-fluid text-center item-center" style="height: 100vh">
     <h1>Chess</h1>
-    <div id="board" class="mx-auto bg-secondary">
+    <div id="board" class="mx-auto bg-secondary d-flex">
+        <h2 id="gameOver" class="hidden display-2 font-weight-bold m-auto"></h2> <!--filled with js-->
+        <div id="pieceSelector" class="hidden m-auto">
+            <h2>Select one:</h2>
+            <button onclick="evolutionSelection('queen', square)" class="piece queen float-left mx-2"></button>
+            <button onclick="evolutionSelection('rook', square)" class="piece rook float-left mx-2"></button>
+            <button onclick="evolutionSelection('bishop', square)" class="piece bishop float-left mx-2"></button>
+            <button onclick="evolutionSelection('knight', square)" class="piece knight float-left mx-2"></button>
+        </div>
         <table>
             <tr>
                 <td class="square 1 80">
-                    <div id="piece1" class="piece black king"></div>
+                    <div id="brook1" class="piece black rook"></div>
                 </td>
                 <td class="square 2 80">
-                    <div id="piece2" class="piece white queen"></div>
+                    <div id="bknig1" class="piece black knight"></div>
                 </td>
                 <td class="square 3 80">
-                    <div id="piece3" class="piece black rook"></div>
+                    <div id="bbish1" class="piece black bishop"></div>
                 </td>
                 <td class="square 4 80">
-                    <div id="piece4" class="piece white bishop"></div>
+                    <div id="bquee1" class="piece black queen"></div>
                 </td>
                 <td class="square 5 80">
-                    <div id="piece5" class="piece black knight"></div>
+                    <div id="bking1" class="piece black king"></div>
                 </td>
                 <td class="square 6 80">
-                    <div id="piece6" class="piece white pawn"></div>
+                    <div id="bbish2" class="piece black bishop"></div>
                 </td>
-                <td class="square 7 80"></td>
-                <td class="square 8 80"></td>
+                <td class="square 7 80">
+                    <div id="bknig2" class="piece black knight"></div>
+                </td>
+                <td class="square 8 80">
+                    <div id="brook2" class="piece black rook"></div>
+                </td>
             </tr>
             <tr>
                 <td class="square 1 70">
-                    <div id="piecei" class="piece black pawn"></div>
+                    <div id="bpawn1" class="piece black pawn"></div>
                 </td>
                 <td class="square 2 70">
-                    <div id="pieceu" class="piece black pawn"></div>
+                    <div id="bpawn2" class="piece black pawn"></div>
                 </td>
                 <td class="square 3 70">
-                    <div id="piecey" class="piece black pawn"></div>
+                    <div id="bpawn3" class="piece black pawn"></div>
                 </td>
-                <td class="square 4 70"></td>
-                <td class="square 5 70"></td>
-                <td class="square 6 70"></td>
-                <td class="square 7 70"></td>
+                <td class="square 4 70">
+                    <div id="bpawn4" class="piece black pawn"></div>
+                </td>
+                <td class="square 5 70">
+                    <div id="bpawn5" class="piece black pawn"></div>
+                </td>
+                <td class="square 6 70">
+                    <div id="bpawn6" class="piece black pawn"></div>
+                </td>
+                <td class="square 7 70">
+                    <div id="bpawn7" class="piece black pawn"></div>
+                </td>
                 <td class="square 8 70">
-                    <div id="piecej" class="piece black pawn"></div>
+                    <div id="bpawn8" class="piece black pawn"></div>
                 </td>
             </tr>
             <tr>
                 <td class="square 1 60"></td>
-                <td class="square 2 60">
-                    <div id="piecef" class="piece white queen"></div>
-                </td>
+                <td class="square 2 60"></td>
                 <td class="square 3 60"></td>
                 <td class="square 4 60"></td>
                 <td class="square 5 60"></td>
@@ -74,9 +93,7 @@
             <tr>
                 <td class="square 1 50"></td>
                 <td class="square 2 50"></td>
-                <td class="square 3 50">
-                    <div id="pieceg" class="piece white queen"></div>
-                </td>
+                <td class="square 3 50"></td>
                 <td class="square 4 50"></td>
                 <td class="square 5 50"></td>
                 <td class="square 6 50"></td>
@@ -86,10 +103,7 @@
             <tr>
                 <td class="square 1 40"></td>
                 <td class="square 2 40"></td>
-                <td class="square 3 40">
-                    <div id="piecel" class="piece black rook"></div>
-
-                </td>
+                <td class="square 3 40"></td>
                 <td class="square 4 40"></td>
                 <td class="square 5 40"></td>
                 <td class="square 6 40"></td>
@@ -98,10 +112,7 @@
             </tr>
             <tr>
                 <td class="square 1 30"></td>
-                <td class="square 2 30">
-                    <div id="piecek" class="piece black rook"></div>
-
-                </td>
+                <td class="square 2 30"></td>
                 <td class="square 3 30"></td>
                 <td class="square 4 30"></td>
                 <td class="square 5 30"></td>
@@ -111,41 +122,59 @@
             </tr>
             <tr>
                 <td class="square 1 20">
-                    <div id="pieceq" class="piece white pawn"></div>
-
+                    <div id="wpawn1" class="piece white pawn"></div>
                 </td>
                 <td class="square 2 20">
-                    <div id="piecew" class="piece white pawn"></div>
-
+                    <div id="wpawn2" class="piece white pawn"></div>
                 </td>
                 <td class="square 3 20">
-                    <div id="piecem" class="piece white pawn"></div>
-
+                    <div id="wpawn3" class="piece white pawn"></div>
                 </td>
-                <td class="square 4 20"></td>
-                <td class="square 5 20"></td>
-                <td class="square 6 20"></td>
-                <td class="square 7 20"></td>
+                <td class="square 4 20">
+                    <div id="wpawn4" class="piece white pawn"></div>
+                </td>
+                <td class="square 5 20">
+                    <div id="wpawn5" class="piece white pawn"></div>
+                </td>
+                <td class="square 6 20">
+                    <div id="wpawn6" class="piece white pawn"></div>
+                </td>
+                <td class="square 7 20">
+                    <div id="wpawn7" class="piece white pawn"></div>
+                </td>
                 <td class="square 8 20">
-                    <div id="piecev" class="piece white pawn"></div>
+                    <div id="wpawn8" class="piece white pawn"></div>
                 </td>
             </tr>
             <tr>
-                <td class="square 1 10"></td>
-                <td class="square 2 10"></td>
-                <td class="square 3 10"></td>
-                <td class="square 4 10"></td>
-                <td class="square 5 10"></td>
-                <td class="square 6 10"></td>
-                <td class="square 7 10"></td>
-                <td class="square 8 10"></td>
+                <td class="square 1 10">
+                    <div id="wrook1" class="piece white rook"></div>
+                </td>
+                <td class="square 2 10">
+                    <div id="wknig1" class="piece white knight"></div>
+                </td>
+                <td class="square 3 10">
+                    <div id="wbish1" class="piece white bishop"></div>
+                </td>
+                <td class="square 4 10">
+                    <div id="wquee1" class="piece white queen"></div>
+                </td>
+                <td class="square 5 10">
+                    <div id="wking1" class="piece white king"></div>
+                </td>
+                <td class="square 6 10">
+                    <div id="wbish2" class="piece white bishop"></div>
+                </td>
+                <td class="square 7 10">
+                    <div id="wknig2" class="piece white knight"></div>
+                </td>
+                <td class="square 8 10">
+                    <div id="wrook2" class="piece white rook"></div>
+                </td>
             </tr>
         </table>
     </div>
 </div>
-
-<button type="button" onclick="test()">Do not press</button>
-
 </body>
 </html>
 
