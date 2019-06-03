@@ -3,30 +3,41 @@ var square = "";
 
 function prepare() {  //prepare the board and pieces
     prepPieces();
+    addEventListener("mousedown", identifyPiece);
+    setInterval(function () {
+        evolvePawn(player)
+    }, 50);  //TODO find a better solution to do evolvePawn
 }
 
 function prepPieces() {
-    var pieceTypes = ["king", "queen", "rook", "bishop", "knight", "pawn"];
-    var playerPieces = document.getElementsByClassName(player);
-    for (var i = 0; i < playerPieces.length; i++) {  //count the number of pieces on board and make them draggable
-        playerPieces[i].setAttribute("draggable", "true");
-        playerPieces[i].setAttribute("ondragstart", "drag(event)");
+    for (var i = 0; i < document.getElementsByClassName(player).length; i++) {  //count the number of pieces on board and make them draggable
+        document.getElementsByClassName(player)[i].setAttribute("draggable", "true");
+        document.getElementsByClassName(player)[i].setAttribute("ondragstart", "drag(event)");
     }
-    pieceTypes.forEach(function(pieceType) {
-        var pieces = document.getElementsByClassName(pieceType);
-        var len = pieces.length;
-        for (i = 0; i < pieces.length; i++) {
-            pieces[i].innerHTML = '<i class="fas fa-chess-' + pieceType + '"></i>';
-        }
-    });
+    for (i = 0; i < document.getElementsByClassName("king").length; i++) {  //count the number of kings on board and add icons into them
+        document.getElementsByClassName("king")[i].innerHTML = '<i class="fas fa-chess-king"></i>';
+    }
+    for (i = 0; i < document.getElementsByClassName("queen").length; i++) {
+        document.getElementsByClassName("queen")[i].innerHTML = '<i class="fas fa-chess-queen"></i>';
+    }
+    for (i = 0; i < document.getElementsByClassName("rook").length; i++) {
+        document.getElementsByClassName("rook")[i].innerHTML = "<i class=\"fas fa-chess-rook\"></i>";
+    }
+    for (i = 0; i < document.getElementsByClassName("bishop").length; i++) {
+        document.getElementsByClassName("bishop")[i].innerHTML = "<i class=\"fas fa-chess-bishop\"></i>";
+    }
+    for (i = 0; i < document.getElementsByClassName("knight").length; i++) {
+        document.getElementsByClassName("knight")[i].innerHTML = "<i class=\"fas fa-chess-knight\"></i>";
+    }
+    for (i = 0; i < document.getElementsByClassName("pawn").length; i++) {
+        document.getElementsByClassName("pawn")[i].innerHTML = "<i class=\"fas fa-chess-pawn\"></i>";
+    }
 }
 
 //GENERAL MOVEMENT FUNCTIONS BEGIN
 
 function drag(ev) {  //pick up piece
-    blockSquares();
     ev.dataTransfer.setData("text", ev.target.id);
-    identifyPiece(ev);
 }
 
 function allowDrop(ev) {  //drag
@@ -39,37 +50,41 @@ function drop(ev) {  //drop piece
     ev.target.appendChild(document.getElementById(data));
     takePiece(ev, player);  //remove a piece if it is in the square
     blockSquares();  //block off all squares upon dropping a piece
-    evolvePawn(player);
-    changeTurn();
+    setTimeout(changeTurn, 55); //this is due to evolvePawn
 }
 
 //GENERAL MOVEMENT FUNCTIONS END
 
 function blockSquares() {
-    var squares = document.getElementsByClassName("square");
     for (var i = 0; i < 64; i++) {
-        squares[i].setAttribute("ondrop", "");
-        squares[i].setAttribute("ondragover", "");
+        document.getElementsByClassName("square")[i].setAttribute("ondrop", "");
+        document.getElementsByClassName("square")[i].setAttribute("ondragover", "");
     }
 }
 
-function identifyPiece(ev) {
+function identifyPiece(ev, square) {
     var pieceType = ev.target.getAttribute("class");
     var squareData = identifySquare(ev);  //find position of square by getting the class
-    if (pieceType.search("pawn") + 1) {
-        movementPawn(ev, squareData);
-    } else if (pieceType.search("knight") + 1) {
-        movementKnight(ev, squareData);
-    } else if (pieceType.search("rook") + 1) {
-        movementRook(ev, squareData);
-    } else if (pieceType.search("bishop") + 1) {
-        movementBishop(ev, squareData);
-    } else if (pieceType.search("queen") + 1) {
-        movementQueen(ev, squareData);
-    } else if (pieceType.search("king") + 1) {
+    if (pieceType.search("king") + 1) {
         movementKing(ev, squareData);
     }
+    if (pieceType.search("queen") + 1) {
+        movementQueen(ev, squareData);
+    }
+    if (pieceType.search("rook") + 1) {
+        movementRook(ev, squareData);
+    }
+    if (pieceType.search("bishop") + 1) {
+        movementBishop(ev, squareData);
+    }
+    if (pieceType.search("knight") + 1) {
+        movementKnight(ev, squareData);
+    }
+    if (pieceType.search("pawn") + 1) {
+        movementPawn(ev, squareData);
+    }
     preventFriendlyFire(ev, squareData);
+
 }
 
 function identifySquare(ev) {  //get quare coordinates and piece color
@@ -320,8 +335,7 @@ function evolvePawn(player) {
     var squares = document.getElementsByClassName(row);
     for (var i = 0; i < 8; i++) {
         if (squares[i].firstElementChild) { //if square is taken
-            if (squares[i].innerHTML.indexOf(" pawn") + 1) { //if a pawn is in the square
-                console.log(squares[i].innerHTML);
+            if (squares[i].innerHTML.indexOf("pawn") + 1) { //if a pawn is in the square
                 squares[i].firstElementChild.innerHTML = "";
                 squares[i].firstElementChild.classList.remove("pawn");
                 for (var j = 0; j < 4; j++) { //color selection buttons depending on the player
@@ -337,7 +351,6 @@ function evolvePawn(player) {
 
 function evolutionSelection(pieceType, square) { //changes pawn type and closes selection view, used in HTML
     square.firstElementChild.innerHTML = ('<i class=\"fas fa-chess-' + pieceType + '"></i>');
-    square.firstElementChild.classList.add(pieceType);
     document.getElementById("pieceSelector").classList.add("hidden");
     document.getElementsByTagName("table")[0].classList.remove("hidden");
 }
