@@ -1,8 +1,10 @@
-var player = "white";
-var square = "";
+// var player = "white";
+// var square = "";
 
 function prepare() {  //prepare the board and pieces
     prepPieces();
+    window.square = "";    //Declare global variables from inside a function
+    window.player = "white"   //TODO try this out
 }
 
 function prepPieces() {

@@ -1,0 +1,15 @@
+#main {
+    height: 100vh;
+}
+#squareCircle {
+    height: 10em;
+    width: 10em;
+    transition-duration: 0.5s
+}
+.square {
+    background: red;
+}
+.circle {
+    background: green;
+    border-radius: 50%;
+}

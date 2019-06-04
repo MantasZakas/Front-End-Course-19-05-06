@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 17</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../js/scripts.js"></script>
+</head>
+<body onload="prepare()">
+
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh">
+    <form>
+        <table>
+            <tr>
+                <th><label for="password1" class="my-auto">Password</label></th>
+                <td><input id="password1" name="password1" type="password"
+                           placeholder="&#8226&#8226&#8226&#8226&#8226&#8226&#8226&#8226"></td>
+            </tr>
+            <tr>
+                <th><label for="password2" class="my-auto">Repeat</label></th>
+                <td><input id="password2" name="password2" type="password"
+                           placeholder="&#8226&#8226&#8226&#8226&#8226&#8226&#8226&#8226"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="validate" type="submit" class="btn btn-primary py-1 px-2">Submit</button>
+                </td>
+                <td id="messageBox">
+<!--                    filled by js-->
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
