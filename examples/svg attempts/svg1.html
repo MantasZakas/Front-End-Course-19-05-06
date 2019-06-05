@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polygons</title>
+</head>
+<body style="margin: 0">
+
+<div style="display:flex; height: 100vh; width: 100vw; align-items: center; justify-content: center; background: lightgray ">
+    <svg height="400" width="400">
+        <polygon points="0,400 200,0 400,400 200,400" style="fill:grey;stroke:black;stroke-width:1">
+            <animate begin="click" attributeName="points" dur="1000ms" fill="freeze" to="0,400 0,0 400,0 400,400"></animate>
+        </polygon>
+<!--        <polygon points="200,10 250,190 160,210" style="fill:grey;stroke:black;stroke-width:1"></polygon>-->
+    </svg>
+</div>
+
+<!--<script>-->
+<!--    console.log(document.getElementsByTagName("polygon")[0]);-->
+<!--    console.log(document.getElementsByTagName("polygon")[0].getAttribute("points"));-->
+
+<!--    function doTheThing () {-->
+<!--        document.getElementsByTagName("polygon")[0].setAttribute("points", "400,400 400,0 0,0 0,400");-->
+<!--    }-->
+<!--    document.getElementsByTagName("polygon")[0].addEventListener("click", doTheThing);-->
+<!--</script>-->
+
+</body>
+</html>
