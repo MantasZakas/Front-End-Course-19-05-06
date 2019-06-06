@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 20</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+
+<div class="container-flex">
+    <div class="container">
+        <button type="button" data-toggle="modal" data-target="#entry_form" class="btn btn-secondary my-4">New entry</button>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Plate number</th>
+                <th>Distance, m</th>
+                <th>Time, s</th>
+                <th>Speed, km/h</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+<!--                Filled by js-->
+            </tbody>
+        </table>
+<!--Begin modal window-->
+        <div id="entry_form" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add new entry</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label for="plate_no">Plate number</label>
+                            <input id="plate_no" type="text" name="plate_no" class="form-control" autofocus>
+                            <label for="distance">Distance, m</label>
+                            <input id="distance" type="number" name="plate_no" step="1" class="form-control">
+                            <label for="time">Time, s</label>
+                            <input id="time" type="number" name="plate_no" step="1" class="form-control">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="save" type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+<!--                        TODO make this button check if inputs are filled-->
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--End modal window        -->
+    </div>
+</div>
+
+</body>
+</html>
