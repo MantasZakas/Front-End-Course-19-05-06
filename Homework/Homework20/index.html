@@ -14,7 +14,7 @@
 
 <div class="container-flex">
     <div class="container">
-        <button type="button" data-toggle="modal" data-target="#entry_form" class="btn btn-secondary my-4">New entry</button>
+        <button id="newEntryButton" type="button" data-toggle="modal" data-target="#entry_form" class="btn btn-secondary my-4">New entry</button>
         <table class="table">
             <thead>
             <tr>
@@ -36,7 +36,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Add new entry</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -50,8 +49,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="save" type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-<!--                        TODO make this button check if inputs are filled-->
+                        <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>

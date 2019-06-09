@@ -1,19 +1,55 @@
 var carData = []; //array with data and html for each car
 var entryNumber = 0; //id number for each car entry
+var newEntry = false;
+var entryBeingEdited = -1;
 const EDIT = "edit-button"; //identifying class tag for js generated buttons
 const DELETE = "delete-button"; // same here
 
 $(document).ready(function () {
+    $("#newEntryButton").click(function () {
+        newEntry = true;
+    });
+    $("#cancel").click(function () {
+        newEntry = false; //reset newEntry on cancel
+        $("input").val(""); //remove entered values from inputs
+    });
     $("#save").click(function () {
-        processData();
+        if (newEntry) {
+            saveNewData();
+        } else {
+            saveEditedData()
+        }
     });
     $(document).on('click', '.btn-sm', function (ev) {
         dynamicButtonActivation(ev);
     })
 });
 
-function processData() {
+function saveNewData() {
     entryNumber++;
+    let newCar = readData(entryNumber);
+    $("tbody").append(newCar.HTML);
+    carData.push(newCar);
+    newEntry = false; //reset newEntry variable
+
+}
+
+function saveEditedData() {
+    carData[entryBeingEdited] = readData(entryBeingEdited);
+    entryBeingEdited = -1; //reset global variable to a neutral state
+    let tableBody = $("tbody");
+    tableBody.html(""); //TODO this can be done via global variable without redrawing the table
+    for (let i = 0; i < carData.length; i++) {
+        tableBody.append(carData[i].HTML);
+    }
+}
+
+/**reads input form and compiles an object with data and html
+ *
+ * @param  entryIdNumber (number)
+ * @returns object {{distance: (*|jQuery|string|undefined), plateNo: (*|jQuery|string|undefined), time: (*|jQuery|string|undefined), entryId: number}}
+ */
+function readData(entryIdNumber) {
     let newCar = {
         entryId: entryNumber,
         plateNo: $("#plate_no").val(),
@@ -21,60 +57,47 @@ function processData() {
         time: $("#time").val(),
     };
     newCar.speed = Math.round(newCar.distance / newCar.time * 3.6); //calculate the speed
-    newCar.HTML = '<tr id="' + entryNumber + '"' + //create id depending on the id number
+    newCar.HTML = '<tr id="' + entryIdNumber + '"' + //create id depending on the id number
         '><td>' + newCar.plateNo + //construct html for a table row with data and buttons
         '</td><td>' + newCar.distance +
         '</td><td>' + newCar.time +
         '</td><td>' + newCar.speed +
-        '</td><td><button type="button" class="btn btn-secondary btn-sm ' + EDIT + '">Edit</button></td>' +
+        '</td><td><button type="button" class="btn btn-secondary btn-sm ' + EDIT + '" data-toggle="modal" data-target="#entry_form">Edit</button></td>' +
         '<td><button type="button" class="btn btn-secondary btn-sm ' + DELETE + '">Delete</button></td></tr>';
-    $("input").val(""); //remove entered values from inputs TODO might need to move this
-    $("tbody").append(newCar.HTML);
-    carData.push(newCar);
+    $("input").val(""); //remove entered values from inputs
+    return newCar
 }
 
-function dynamicButtonActivation(ev) {
-    // console.log(ev.target);
-    // console.log(ev.target.parentElement);
-    // console.log(ev.target.classList);
-    // console.log(ev.target.classList.toString().indexOf(EDIT));
+function dynamicButtonActivation(ev) { //choose if delete or edit button was clicked
     let buttonClasses = ev.target.classList.toString();
-    // console.log(ev.target.parentElement);
-    // console.log(ev.target.parentElement.parentElement.id);
-
     if (buttonClasses.indexOf(EDIT) + 1) {
         editEntry(ev);
     } else if (buttonClasses.indexOf(DELETE) + 1) {
         deleteEntry(ev);
-
     }
 }
 
 function editEntry(ev) {
-
+    let carId = parseInt(ev.target.parentElement.parentElement.id);
+    for (let i = 0; i < carData.length; i++) {
+        if (carData[i].entryId === carId) {
+            $("#plate_no").val(carData[i].plateNo);
+            $("#distance").val(carData[i].distance);
+            $("#time").val(carData[i].time);
+            entryBeingEdited = i; //returns the relevant index of the main car array
+            break
+        }
+    }
 }
 
 function deleteEntry(ev) {
     if (confirm("Are you sure?")) {
-        // console.log("oh no...");
-        let carId = ev.target.parentElement.parentElement.id;
+        let carId = parseInt(ev.target.parentElement.parentElement.id);
         carData.forEach(function (entry, index) {
-            // console.log(entry);
-            // console.log(entry.entryId);
-            // console.log(index);
-            // console.log(carId);
-            // console.log((carId == entry.entryId));
-            if (carId == entry.entryId) {
-                console.log(carData);
-                console.log(index);
-                console.log(entry);
+            if (carId === entry.entryId) {
                 carData.splice(index, 1); //delete relevant entry for the main data array
             }
         });
-        // carData.splice(carId, carId + 1);
         ev.target.parentElement.parentElement.innerHTML = ""; //delete a row of the table
-        console.log(carData);
     }
 }
-
-//TODO bind edit and delete buttons to the tr they are in
