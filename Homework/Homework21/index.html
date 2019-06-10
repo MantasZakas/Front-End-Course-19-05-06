@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 21</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="container">
+        <h1 class="text-center my-4">Adreso paieška</h1>
+        <form>
+            <div class="form-group">
+                <label for="city">Miestas:</label>
+                <input type="text" class="form-control" id="city" required>
+            </div>
+            <div class="form-group">
+                <label for="street">Gatvė:</label>
+                <input type="text" class="form-control" id="street" required>
+            </div>
+            <div class="form-group">
+                <label for="number">Namo numeris:</label>
+                <input type="text" class="form-control" id="number" required>
+            </div>
+            <button id="submit" type="submit" class="btn btn-secondary">Ieškoti</button>
+        </form>
+        <h4 class="text-center mb-4">Pašto kodas: <span id="post_code">
+<!--            filled by JS-->
+        </span></h4>
+        <a class="float-right" href="https://postit.lt">postit.lt</a>
+    </div>
+</div>
+
+</body>
+</html>
