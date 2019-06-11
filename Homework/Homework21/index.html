@@ -30,12 +30,16 @@
             </div>
             <button id="submit" type="submit" class="btn btn-secondary">Ieškoti</button>
         </form>
-        <h4 class="text-center mb-4">Pašto kodas: <span id="post_code">
+        <h4 class="text-center">Pašto kodas: <span id="post_code">
 <!--            filled by JS-->
         </span></h4>
-        <a class="float-right" href="https://postit.lt">postit.lt</a>
+        <div id="googleMap" class="mx-auto" style="max-width:800px;height:300px;"></div>
+        <a class="float-right m-1" href="https://postit.lt">PostIt.lt</a>
+        <a class="float-right m-1" href="https://locationiq.com/">LocationIQ</a>
     </div>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3eDQxZgH3A7Ra7gBM_SqXesiYDxgShzk&callback=myMap"></script>
 
 </body>
 </html>
