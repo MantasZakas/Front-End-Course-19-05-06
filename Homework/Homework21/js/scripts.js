@@ -1,5 +1,5 @@
-let map = {}; //global variable for google maps
-let marker = {}; //global variable for google maps marker
+var map = {}; //global variable for google maps
+var marker = {}; //global variable for google maps marker
 
 $(document).ready(function () {
     $("#submit").click(function (ev) {
